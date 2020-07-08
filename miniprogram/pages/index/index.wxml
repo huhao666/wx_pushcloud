@@ -56,8 +56,8 @@
   </view>
 
   <!-- 消息推送 -->
-  <view class="uploader" bindtap="getMessage">
-    <text>消息推送</text>
+  <view class="uploader" >
+    <button bindtap="shouquan" type="primary">获取订阅授权</button>
   </view>
 
 </view>

@@ -28,6 +28,6 @@ exports.main = async(event, context) => {
     })
     return result
   } catch (error) {
-    return error
+    return "模板服务器错误"+error
   } 
 }

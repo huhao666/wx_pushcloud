@@ -47,27 +47,29 @@ Page({
   },
 
   shouquan() {
+    console.log(app.globalData.openid)
     wx.requestSubscribeMessage({
-      tmplIds:['PSP9DEAmBPiPVKWLW0X30dLzO3n3H78ibk4m736vWMA'],
-      success(res){
-        console.log('授权成功',res)
+      tmplIds:['PSP9DEAmBPiPVKWLW0X30dLzO3n3H78ibk4m736vWMA']
+    }).then(res=>{
+      console.log('授权成功',res)
+      this.send(app.globalData.openid)
+    }).catch(res=>{
+      console.log('授权失败',res)
+    })
+  },
+
+  send(openid){
+    // 调用消息推送云函数
+    wx.cloud.callFunction({
+      name: 'sendMsg',
+      data: {openid:openid},
+      success: res => {
+        console.log('推送消息成功', res)
       },
-      fail(res){
-        console.log('授权失败',res)
+      fail: err => {
+        console.error('推送消息失败', err)
       }
     })
-
-    // // 调用消息推送云函数
-    // wx.cloud.callFunction({
-    //   name: 'send',
-    //   data: {},
-    //   success: res => {
-    //     console.log('[云函数] [send] : ', res.result)
-    //   },
-    //   fail: err => {
-    //     console.error('[云函数] [send] 调用失败', err)
-    //   }
-    // })
   },
 
   onGetOpenid: function() {

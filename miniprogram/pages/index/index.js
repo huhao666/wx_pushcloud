@@ -7,7 +7,8 @@ Page({
     userInfo: {},
     logged: false,
     takeSession: false,
-    requestResult: ''
+    requestResult: '',
+    formid:""
   },
 
   onLoad: function() {
@@ -46,6 +47,14 @@ Page({
     }
   },
 
+  //获取formid
+  getFormid(event){
+    console.log("获取到的formid",event.detail.formId)
+    this.setData({
+      formid : event.detail.formId
+    })
+  },
+
   shouquan() {
     console.log(app.globalData.openid)
     wx.requestSubscribeMessage({
@@ -58,11 +67,12 @@ Page({
     })
   },
 
-  send(openid){
+  send(){
     // 调用消息推送云函数
+    let formid = this.data.formid;
     wx.cloud.callFunction({
       name: 'sendMsg',
-      data: {openid:openid},
+      data: {formId:formid},
       success: res => {
         console.log('推送消息成功', res)
       },

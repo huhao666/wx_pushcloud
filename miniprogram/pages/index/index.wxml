@@ -57,7 +57,11 @@
 
   <!-- 消息推送 -->
   <view class="uploader" >
-    <button bindtap="shouquan" type="primary">获取订阅授权</button>
+    <form report-submit="true" bindsubmit="getFormid">
+      <button type="primary" form-type="submit">获取formid</button>
+    </form>
+    <text>formid：{{formid}}</text>
+    <button bindtap="send" type="primary">获取订阅授权</button>
   </view>
 
 </view>

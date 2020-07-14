@@ -1,7 +1,11 @@
 {
   "permissions": {
     "openapi": [
-      "templateMessage.send"
+      "templateMessage.send",
+      "templateMessage.addTemplate",
+      "templateMessage.deleteTemplate",
+      "templateMessage.getTemplateLibraryById",
+      "templateMessage.getTemplateLibraryList"
     ]
   }
 }
